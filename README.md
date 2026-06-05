@@ -6,7 +6,9 @@ A cozy collection of personal Dalamud plugins for FFXIV.
 - Enter `/xlsettings` in the chat window and go to the Experimental tab in the opening window.
 - **Skip below the DevPlugins section to the Custom Plugin Repositories section.**
 - Copy and paste the repo.json link into the first free text input field.
-- `https://raw.githubusercontent.com/devoreofox/foxs-hollow/main/repo.json`
+  ```
+  https://raw.githubusercontent.com/devoreofox/foxs-hollow/main/repo.json
+  ```
 - Click on the + button and make sure the checkmark beside the new field is set afterwards.
 - **Click on the Save-icon in the bottom right.**
 
