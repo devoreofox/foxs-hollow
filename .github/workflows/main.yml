@@ -1,0 +1,40 @@
+name: Plugin Update
+
+on:
+  repository_dispatch:
+    types: [plugin-updated]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update Version
+        shell: pwsh
+        run: |
+          $plugin = '${{ github.event.client_payload.plugin }}'
+          $version = '${{ github.event.client_payload.version }}'
+          $json = Get-Content 'repo.json' | ConvertFrom-Json
+          $entry = $json | Where-Object { $_.InternalName -eq $plugin }
+          if ($entry) {
+            $entry.AssemblyVersion = $version
+            $entry.Version = $version
+            $output = ConvertTo-Json @($json) -Depth 10
+            Set-Content 'repo.json' $output
+            Write-Host "Updated $plugin to $version"
+          } else {
+            Write-Host "Plugin $plugin not found in repo.json"
+            exit 1
+          }
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add repo.json
+          git commit -m "bump ${{ github.event.client_payload.plugin }} to ${{ github.event.client_payload.version }}"
+          git push
