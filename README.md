@@ -19,3 +19,6 @@ Following these steps, you should be able to see all contained plugins in the Av
 
 ## [Little Luxuries](https://github.com/devoreofox/LittleLuxuries)
 - A collection of small quality-of-life tweaks designed to make your time in Eorzea a little more comfortable, one small luxury at a time.
+
+## [Persona](https://github.com/devoreofox/persona)
+- A plugin that reads your Glamourer designs and the Penumbra mods behind them, flags where two outfits clash over the same item, and shows the mod associations each design needs to stay self-contained.
